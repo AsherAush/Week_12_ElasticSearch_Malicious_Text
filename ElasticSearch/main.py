@@ -3,6 +3,9 @@ from elasticsearch_connector import ElasticsearchConnector
 from elasticsearch_manager import ElasticsearchManager
 from sentiment_indexer import SentimentIndexer
 from weapon_indexer import WeaponsIndexer
+from cleaner import Cleaner
+
+
 # הכנת דאטה
 preparator = Datapreparation()
 df = preparator.load_data()
@@ -24,3 +27,8 @@ sentiment.analyze_and_update()
 # זיהוי כלי נשק
 weapons = WeaponsIndexer(connector)
 weapons.analyze_and_update()
+
+
+# ניקוי מסמכים לא רלוונטיים
+cleaner = Cleaner(connector)
+cleaner.delete_irrelevant()
